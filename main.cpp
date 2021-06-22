@@ -2,6 +2,11 @@
 #include <QApplication>
 #include "iostream"
 #include "mserver.h"
+
+#include <iomanip>
+
+#include <sstream>
+
 using namespace std;
 mserver *server;
 
