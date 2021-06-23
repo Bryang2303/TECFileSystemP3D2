@@ -52,13 +52,15 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp \
 		widget.cpp \
-		mserver.cpp \
-		socketcliente.cpp moc_widget.cpp \
+		socketcliente.cpp \
+		filesmanagement.cpp \
+		controllernode.cpp moc_widget.cpp \
 		moc_socketcliente.cpp
 OBJECTS       = main.o \
 		widget.o \
-		mserver.o \
 		socketcliente.o \
+		filesmanagement.o \
+		controllernode.o \
 		moc_widget.o \
 		moc_socketcliente.o
 DIST          = ../Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
@@ -241,11 +243,13 @@ DIST          = ../Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../Qt5.9.1/5.9.1/gcc_64/mkspecs/features/yacc.prf \
 		../Qt5.9.1/5.9.1/gcc_64/mkspecs/features/lex.prf \
 		TEC_File_System_P3D2.pro widget.h \
-		mserver.h \
-		socketcliente.h main.cpp \
+		socketcliente.h \
+		filesmanagement.h \
+		controllernode.h main.cpp \
 		widget.cpp \
-		mserver.cpp \
-		socketcliente.cpp
+		socketcliente.cpp \
+		filesmanagement.cpp \
+		controllernode.cpp
 QMAKE_TARGET  = TEC_File_System_P3D2
 DESTDIR       = 
 TARGET        = TEC_File_System_P3D2
@@ -641,8 +645,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Qt5.9.1/5.9.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents widget.h mserver.h socketcliente.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp widget.cpp mserver.cpp socketcliente.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents widget.h socketcliente.h filesmanagement.h controllernode.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp widget.cpp socketcliente.cpp filesmanagement.cpp controllernode.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents widget.ui $(DISTDIR)/
 
 
@@ -982,7 +986,7 @@ main.o: main.cpp widget.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qguiapplication.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qinputmethod.h \
-		mserver.h
+		controllernode.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 widget.o: widget.cpp widget.h \
@@ -1129,14 +1133,26 @@ widget.o: widget.cpp widget.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtabbar.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qrubberband.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLineEdit \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlineedit.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtextcursor.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtextformat.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpen.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtextoption.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QOpenGLWidget \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qopenglwidget.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/QSurfaceFormat \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qsurfaceformat.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qopengl.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtCore/qt_windows.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qopengles2ext.h \
+		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qopenglext.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QPlainTextEdit \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qplaintextedit.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtextedit.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtextdocument.h \
-		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtextoption.h \
-		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtextcursor.h \
-		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtextformat.h \
-		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpen.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtextlayout.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qglyphrun.h \
@@ -1146,9 +1162,6 @@ widget.o: widget.cpp widget.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widget.o widget.cpp
-
-mserver.o: mserver.cpp mserver.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mserver.o mserver.cpp
 
 socketcliente.o: socketcliente.cpp socketcliente.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtCore/QObject \
@@ -1199,6 +1212,12 @@ socketcliente.o: socketcliente.cpp socketcliente.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontainerfwd.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o socketcliente.o socketcliente.cpp
+
+filesmanagement.o: filesmanagement.cpp filesmanagement.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o filesmanagement.o filesmanagement.cpp
+
+controllernode.o: controllernode.cpp controllernode.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controllernode.o controllernode.cpp
 
 moc_widget.o: moc_widget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_widget.o moc_widget.cpp

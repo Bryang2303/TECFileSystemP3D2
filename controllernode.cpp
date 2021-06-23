@@ -1,11 +1,11 @@
-#include "mserver.h"
+#include "controllernode.h"
 
-mserver::mserver()
+ControllerNode::ControllerNode()
 {
 }
 
 
-bool mserver::crear_Socket()
+bool ControllerNode::crear_Socket()
 {
     descriptor = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
     if(descriptor < 0)
@@ -17,7 +17,7 @@ bool mserver::crear_Socket()
     return true;
 }
 
-bool mserver::ligar_kernel()
+bool ControllerNode::ligar_kernel()
 {
     if((bind(descriptor,(sockaddr *)&info,(socklen_t)sizeof(info))) < 0)
         return false;
@@ -27,7 +27,7 @@ bool mserver::ligar_kernel()
 }
 
 
-void mserver::run()
+void ControllerNode::run()
 {
     if(!crear_Socket())
         throw string("Error al crear el socket");
@@ -45,7 +45,7 @@ void mserver::run()
         {
             clientes.push_back(data.descriptor);
             pthread_t hilo;
-            pthread_create(&hilo,0,mserver::controladorCliente,(void *)&data);
+            pthread_create(&hilo,0,ControllerNode::controladorCliente,(void *)&data);
             pthread_detach(hilo);
         }
     }
@@ -54,7 +54,7 @@ void mserver::run()
 
 
 
-void * mserver::controladorCliente(void *obj)
+void * ControllerNode::controladorCliente(void *obj)
 {
     dataSocket *data = (dataSocket*)obj;
     while (true) {
@@ -74,8 +74,8 @@ void * mserver::controladorCliente(void *obj)
 }
 
 
-void mserver::setMensaje(const char *msn)
+void ControllerNode::setMensaje(const char *msn)
 {
     for(unsigned int i = 0 ; i < clientes.size() ; i++)
-        cout << "bytes enviados "<< send(clientes[i],msn,strlen(msn),0);
+        cout << "bytes enviados, el msn es : " << msn << " >>> " << send(clientes[i],msn,strlen(msn),0);
 }

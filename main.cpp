@@ -1,14 +1,14 @@
 #include "widget.h"
 #include <QApplication>
 #include "iostream"
-#include "mserver.h"
+#include "controllernode.h"
 
 #include <iomanip>
 
 #include <sstream>
 
 using namespace std;
-mserver *server;
+ControllerNode *server;
 
 void * serverRun(void *)
 {
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
         return 0;
     } else {
-        server = new mserver;
+        server = new ControllerNode;
         pthread_t hiloServer;
         pthread_create(&hiloServer,0,serverRun,NULL);
         pthread_detach(hiloServer);
@@ -46,8 +46,8 @@ int main(int argc, char *argv[])
 
             string mensaje;
             cin >> mensaje;
-            string a = "sdasn";
-            server->setMensaje(a.c_str());
+            //string a = "sdasn";
+            server->setMensaje(mensaje.c_str());
         }
 
         delete server;

@@ -26,13 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
-    mserver.cpp \
-    socketcliente.cpp
+    socketcliente.cpp \
+    filesmanagement.cpp \
+    controllernode.cpp \
+    huffman.cpp
 
 HEADERS += \
         widget.h \
-    mserver.h \
-    socketcliente.h
+    socketcliente.h \
+    filesmanagement.h \
+    controllernode.h \
+    huffman.h
 
 FORMS += \
         widget.ui

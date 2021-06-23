@@ -28,13 +28,13 @@ struct dataSocket{
 /**
  * @brief The mserver class La clase que permite la creacion del Servidor, asi como su conexion con el Cliente y todo el flujo de datos con este
  */
-class mserver
+class ControllerNode
 {
 public:
     /**
      * @brief mserver El constructor de mserver
      */
-    mserver();
+    ControllerNode();
     /**
      * @brief run Ejecucion del servidor
      */
