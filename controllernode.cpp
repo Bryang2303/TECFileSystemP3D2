@@ -67,6 +67,7 @@ void * ControllerNode::controladorCliente(void *obj)
                 break;
         }
         cout << mensaje << endl;
+
     }
 
     close(data->descriptor);

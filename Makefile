@@ -54,13 +54,15 @@ SOURCES       = main.cpp \
 		widget.cpp \
 		socketcliente.cpp \
 		filesmanagement.cpp \
-		controllernode.cpp moc_widget.cpp \
+		controllernode.cpp \
+		huffman.cpp moc_widget.cpp \
 		moc_socketcliente.cpp
 OBJECTS       = main.o \
 		widget.o \
 		socketcliente.o \
 		filesmanagement.o \
 		controllernode.o \
+		huffman.o \
 		moc_widget.o \
 		moc_socketcliente.o
 DIST          = ../Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
@@ -245,11 +247,13 @@ DIST          = ../Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_pre.prf \
 		TEC_File_System_P3D2.pro widget.h \
 		socketcliente.h \
 		filesmanagement.h \
-		controllernode.h main.cpp \
+		controllernode.h \
+		huffman.h main.cpp \
 		widget.cpp \
 		socketcliente.cpp \
 		filesmanagement.cpp \
-		controllernode.cpp
+		controllernode.cpp \
+		huffman.cpp
 QMAKE_TARGET  = TEC_File_System_P3D2
 DESTDIR       = 
 TARGET        = TEC_File_System_P3D2
@@ -645,8 +649,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Qt5.9.1/5.9.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents widget.h socketcliente.h filesmanagement.h controllernode.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp widget.cpp socketcliente.cpp filesmanagement.cpp controllernode.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents widget.h socketcliente.h filesmanagement.h controllernode.h huffman.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp widget.cpp socketcliente.cpp filesmanagement.cpp controllernode.cpp huffman.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents widget.ui $(DISTDIR)/
 
 
@@ -986,7 +990,8 @@ main.o: main.cpp widget.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qguiapplication.h \
 		../Qt5.9.1/5.9.1/gcc_64/include/QtGui/qinputmethod.h \
-		controllernode.h
+		controllernode.h \
+		huffman.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 widget.o: widget.cpp widget.h \
@@ -1218,6 +1223,9 @@ filesmanagement.o: filesmanagement.cpp filesmanagement.h
 
 controllernode.o: controllernode.cpp controllernode.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controllernode.o controllernode.cpp
+
+huffman.o: huffman.cpp huffman.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o huffman.o huffman.cpp
 
 moc_widget.o: moc_widget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_widget.o moc_widget.cpp
