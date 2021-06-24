@@ -1,18 +1,7 @@
+#include "controllernode.h"
 #include "filesmanagement.h"
 
-FilesManagement::FilesManagement()
-{
-    this->contBookPart = 1;
-
-    this->numFile;
-    this->numBlockD1 = 2;
-    this->numBlockD2 = 2;
-    this->numBlockD3 = 2;
-    this->numBlockD4 = 2;
-
-}
-
-string FilesManagement::ParityXnor(string p1, string p2, string p3){
+string ParityXnor(string p1, string p2, string p3){
     string xnor;
     string xnorF;
     for (int i = 0;i<16;i++){
@@ -33,7 +22,7 @@ string FilesManagement::ParityXnor(string p1, string p2, string p3){
     return xnorF;
 }
 
-void FilesManagement::OddParityBit(string bitChain){
+void OddParityBit(string bitChain){
     int contOnes = 0;
     for (int q = 0;q<48;q++){
         //cout <<  bitChain[q] << endl;
@@ -52,7 +41,7 @@ void FilesManagement::OddParityBit(string bitChain){
     }
 }
 
-string FilesManagement::GenerateParityInfo(string data){
+string GenerateParityInfo(string data){
   //string data = "ABCDEF";
 
   int contBytes = 1;
@@ -82,7 +71,25 @@ string FilesManagement::GenerateParityInfo(string data){
 
 }
 
-int FilesManagement::IndexBooks(string path) {
+
+
+
+void escribir(string path);
+void ReadAndDivide(string path, string fileName);
+void agregar();
+void write(string newPath, string fileName, string textPart,int partNum,int nDisk);
+
+
+int contBookPart = 1;
+int order[4];
+int numFile;
+int numBlockD1 = 2;
+int numBlockD2 = 2;
+int numBlockD3 = 2;
+int numBlockD4 = 2;
+
+
+int IndexBooks(string path) {
     DIR *dir; struct dirent *diread;
     vector<char *> files;
 
@@ -98,15 +105,13 @@ int FilesManagement::IndexBooks(string path) {
 
     for (auto file : files) {
         cout << file << endl;
-
         ReadAndDivide(path,file);
     }
 
 
     //return EXIT_SUCCESS;
 }
-
-void FilesManagement::write(string newPath, string fileName, string textPart,int partNum, int nDisk){
+void write(string newPath, string fileName, string textPart,int partNum, int nDisk){
 
     ofstream file;
     ofstream metaFile;
@@ -124,21 +129,21 @@ void FilesManagement::write(string newPath, string fileName, string textPart,int
 
     switch (nDisk) {
     case 1:
-        numBlock = this->numBlockD1;
+        numBlock = numBlockD1;
         cout << "El block numero " << numBlock << endl;
-        this->numBlockD1++;
+        numBlockD1++;
         break;
     case 2:
-        numBlock = this->numBlockD2;
-        this->numBlockD2++;
+        numBlock = numBlockD2;
+        numBlockD2++;
         break;
     case 3:
-        numBlock = this->numBlockD3;
-        this->numBlockD3++;
+        numBlock = numBlockD3;
+        numBlockD3++;
         break;
     case 4:
-        numBlock = this->numBlockD4;
-        this->numBlockD4++;
+        numBlock = numBlockD4;
+        numBlockD4++;
         break;
     }
     /*
@@ -183,7 +188,7 @@ void FilesManagement::write(string newPath, string fileName, string textPart,int
     metaFile.close();
 }
 
-void FilesManagement::writeParity(string fileName, string textData,int nDisk){
+void writeParity(string fileName, string textData,int nDisk){
 
     ofstream file;
     ofstream metaFile;
@@ -202,21 +207,21 @@ void FilesManagement::writeParity(string fileName, string textData,int nDisk){
 
     switch (nDisk) {
     case 1:
-        numBlock = this->numBlockD1;
+        numBlock = numBlockD1;
         cout << "El block numero " << numBlock << endl;
-        this->numBlockD1++;
+        numBlockD1++;
         break;
     case 2:
-        numBlock = this->numBlockD2;
-        this->numBlockD2++;
+        numBlock = numBlockD2;
+        numBlockD2++;
         break;
     case 3:
-        numBlock = this->numBlockD3;
-        this->numBlockD3++;
+        numBlock = numBlockD3;
+        numBlockD3++;
         break;
     case 4:
-        numBlock = this->numBlockD4;
-        this->numBlockD4++;
+        numBlock = numBlockD4;
+        numBlockD4++;
         break;
     }
 
@@ -236,7 +241,7 @@ void FilesManagement::writeParity(string fileName, string textData,int nDisk){
 }
 
 
-void FilesManagement::escribir(string fileName){
+void escribir(string fileName){
 
     ofstream archivo;
 
@@ -246,12 +251,11 @@ void FilesManagement::escribir(string fileName){
         cout << "Error al intentar abrir el archivo" << endl;
         exit(1);
     }
-
     archivo << "ABCDEF";
 
     archivo.close();
 }
-void FilesManagement::ReadAndDivide(string path, string fileName){
+void ReadAndDivide(string path, string fileName){
     ifstream archivo;
     string texto;
 
@@ -274,34 +278,34 @@ void FilesManagement::ReadAndDivide(string path, string fileName){
     string part;
     int partNum = 1;
 
-    switch (this->contBookPart) {
+    switch (contBookPart) {
     case 4:
         order[0] = 1;
         order[1] = 2;
         order[2] = 3;
         order[3] = 4;
-        this->numFile = 1;
+        numFile = 1;
         break;
     case 5:
         order[0] = 1;
         order[1] = 2;
         order[2] = 4;
         order[3] = 3;
-        this->numFile = 2;
+        numFile = 2;
         break;
     case 7:
         order[0] = 1;
         order[1] = 4;
         order[2] = 2;
         order[3] = 3;
-        this->numFile = 3;
+        numFile = 3;
         break;
     case 8:
         order[0] = 4;
         order[1] = 1;
         order[2] = 2;
         order[3] = 3;
-        this->numFile = 4;
+        numFile = 4;
         break;
     }
     //cout << "ES EL DISKO NUM > > > " << contBookPart << endl;
@@ -310,7 +314,7 @@ void FilesManagement::ReadAndDivide(string path, string fileName){
     }
 
     int contDisk = 1;
-    if (this->numFile>0 && this->numFile<=4){
+    if (numFile>0 && numFile<=4){
         while (content<texto.length()+1) {// mientras no sea el final del archivo
             if (content == texto.length()){
 
@@ -355,12 +359,12 @@ void FilesManagement::ReadAndDivide(string path, string fileName){
             }
         }
     }
-    this->contBookPart++;
-    this->numFile = 0;
+    contBookPart++;
+    numFile = 0;
     archivo.close();
 
 }
-void FilesManagement::agregar(){
+void agregar(){
     ofstream archivo;
 
     archivo.open("Archivos/p1.text",ios::app);
@@ -375,3 +379,232 @@ void FilesManagement::agregar(){
 
 }
 
+//
+// to map each character its huffman value
+map<char, string> codes;
+
+// to store the frequency of character of the input data
+map<char, int> freq;
+
+// A Huffman tree node
+struct MinHeapNode
+{
+    char data;             // One of the input characters
+    int freq;             // Frequency of the character
+    MinHeapNode *left, *right; // Left and right child
+
+    MinHeapNode(char data, int freq)
+    {
+        left = right = NULL;
+        this->data = data;
+        this->freq = freq;
+    }
+};
+
+// utility function for the priority queue
+struct compare
+{
+    bool operator()(MinHeapNode* l, MinHeapNode* r)
+    {
+        return (l->freq > r->freq);
+    }
+};
+
+// utility function to print characters along with
+// there huffman value
+void printCodes2(struct MinHeapNode* root, string str)
+{
+    if (!root)
+        return;
+    if (root->data != '$')
+        cout << root->data << ": " << str << "\n";
+    printCodes2(root->left, str + "0");
+    printCodes2(root->right, str + "1");
+}
+
+// utility function to store characters along with
+// there huffman value in a hash table, here we
+// have C++ STL map
+void storeCodes(struct MinHeapNode* root, string str)
+{
+    if (root==NULL)
+        return;
+    if (root->data != '$')
+        codes[root->data]=str;
+    storeCodes(root->left, str + "0");
+    storeCodes(root->right, str + "1");
+}
+
+// STL priority queue to store heap tree, with respect
+// to their heap root node value
+priority_queue<MinHeapNode*, vector<MinHeapNode*>, compare> minHeap;
+
+// function to build the Huffman tree and store it
+// in minHeap
+void HuffmanCodes(int size)
+{
+    struct MinHeapNode *left, *right, *top;
+    for (map<char, int>::iterator v=freq.begin(); v!=freq.end(); v++) {
+
+        minHeap.push(new MinHeapNode(v->first, v->second));
+        cout << "FIRST " << v->first << " SECOND " << v->second << endl;
+    }
+    while (minHeap.size() != 1)
+    {
+        left = minHeap.top();
+        minHeap.pop();
+        right = minHeap.top();
+        minHeap.pop();
+        top = new MinHeapNode('$', left->freq + right->freq);
+        top->left = left;
+        top->right = right;
+        minHeap.push(top);
+    }
+    storeCodes(minHeap.top(), "");
+}
+
+// utility function to store map each character with its
+// frequency in input string
+void calcFreq(string str, int n)
+{
+    for (int i=0; i<str.size(); i++)
+        freq[str[i]]++;
+}
+
+// function iterates through the encoded string s
+// if s[i]=='1' then move to node->right
+// if s[i]=='0' then move to node->left
+// if leaf node append the node->data to our output string
+string decode_file(struct MinHeapNode* root, string s)
+{
+    //cout << minHeap. << endl;
+    string ans = "";
+    struct MinHeapNode* curr = root;
+    cout << root->left->left->right->data << " <<< " << endl;
+    for (int i=0;i<s.size();i++)
+    {
+        if (s[i] == '0')
+           curr = curr->left;
+        else
+           curr = curr->right;
+
+        // reached leaf node
+        if (curr->left==NULL and curr->right==NULL)
+        {
+            ans += curr->data;
+            curr = root;
+        }
+    }
+    // cout<<ans<<endl;
+    return ans+'\0';
+}
+string ControllerNode::DecodeMsg(string msg){
+    string str = msg;
+    string encodedString, decodedString;
+    calcFreq(str, str.length());
+    HuffmanCodes(str.length());
+    cout << "Character With there Frequencies:\n";
+    for (auto v=codes.begin(); v!=codes.end(); v++)
+        cout << v->first <<' ' << v->second << endl;
+
+    for (auto i: str)
+        encodedString+=codes[i];
+
+    cout << "\nReceived:\n" << encodedString << endl;
+
+    decodedString = decode_file(minHeap.top(), encodedString);
+    cout << "\nDecoded:\n" << decodedString << endl;
+    return decodedString;
+//
+}
+ControllerNode::ControllerNode()
+{
+    //IndexBooks("./Archivos/");
+}
+
+
+bool ControllerNode::crear_Socket()
+{
+    descriptor = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
+    if(descriptor < 0)
+        return false;
+    info.sin_family = AF_INET;
+    info.sin_addr.s_addr = INADDR_ANY;
+    info.sin_port = htons(4050);
+    memset(&info.sin_zero,0,sizeof(info.sin_zero));
+    return true;
+}
+
+bool ControllerNode::ligar_kernel()
+{
+    if((bind(descriptor,(sockaddr *)&info,(socklen_t)sizeof(info))) < 0)
+        return false;
+
+    listen(descriptor,5);
+    return true;
+}
+
+
+void ControllerNode::run()
+{
+    if(!crear_Socket())
+        throw string("Error al crear el socket");
+    if(!ligar_kernel())
+        throw string("Error al  ligar kernel");
+
+    while (true) {
+        cout << "Esperando nuevo cliente"<<endl;
+        dataSocket data;
+        socklen_t tam = sizeof(data.info);
+        data.descriptor = accept(descriptor,(sockaddr*)&data.info,&tam);
+        if(data.descriptor < 0)
+            cout << "Error al acceptar al cliente"<<endl;
+        else
+        {
+            clientes.push_back(data.descriptor);
+            pthread_t hilo;
+            pthread_create(&hilo,0,ControllerNode::controladorCliente,(void *)&data);
+            pthread_detach(hilo);
+        }
+    }
+    close(descriptor);
+}
+
+
+
+void * ControllerNode::controladorCliente(void *obj)
+{
+    dataSocket *data = (dataSocket*)obj;
+    while (true) {
+        string mensaje;
+        while (1) {
+            char buffer[100] = {0};
+            int bytes = recv(data->descriptor,buffer,100,0);
+            mensaje.append(buffer,bytes);
+            if(bytes < 100)
+                break;
+        }
+        if (mensaje!=""){
+            string msgDecoded = DecodeMsg(mensaje);
+            cout << msgDecoded << endl;
+
+            if (msgDecoded[msgDecoded.length()-2] == '/'){
+                FilesManagement *fm;
+                IndexBooks(msgDecoded);
+            }
+        }
+        //cout << mensaje << endl;
+
+
+    }
+
+    close(data->descriptor);
+    pthread_exit(NULL);
+}
+
+
+void ControllerNode::setMensaje(const char *msn)
+{
+    for(unsigned int i = 0 ; i < clientes.size() ; i++)
+        cout << "bytes enviados, el msn es : " << msn << " >>> " << send(clientes[i],msn,strlen(msn),0);
+}

@@ -38,31 +38,7 @@ int main(int argc, char *argv[])
 {
     int mode = 1;
     if (mode==2){
-        FilesManagement *fss;
-        fss->escribir("A");
-        fss->escribir("B");
-        fss->escribir("C");
-        fss->escribir("D");
-
-        string path = "./Archivos/";
-        DIR *dir; struct dirent *diread;
-        vector<char *> files;
-
-        if ((dir = opendir(path.c_str())) != nullptr) {
-            while ((diread = readdir(dir)) != nullptr) {
-                files.push_back(diread->d_name);
-            }
-            closedir (dir);
-        } else {
-            perror ("opendir");
-            return EXIT_FAILURE;
-        }
-
-        for (auto file : files) {
-            cout << file << endl;
-            //ReadAndDivide(path,file);
-        }
-        //fss->IndexBooks("Archivos/");
+       
 
 
 
