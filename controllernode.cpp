@@ -205,7 +205,12 @@ void * ControllerNode::controladorCliente(void *obj)
                 break;
         }
         if (mensaje!=""){
-            DecodeMsg(mensaje);
+            string msgDecoded = DecodeMsg(mensaje);
+            cout << "HE AHI EL " << msgDecoded << endl;
+            cout << msgDecoded.length() << endl;
+            if (msgDecoded[msgDecoded.length()-1] == '/'){
+                cout << "MJM MJM " << endl;
+            }
         }
         //cout << mensaje << endl;
 
