@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,14 +29,18 @@ SOURCES += \
     socketcliente.cpp \
     filesmanagement.cpp \
     controllernode.cpp \
-    huffman.cpp
+    huffman.cpp \
+    tecfsdisk.cpp \
+    disknode.cpp
 
 HEADERS += \
         widget.h \
     socketcliente.h \
     filesmanagement.h \
     controllernode.h \
-    huffman.h
+    huffman.h \
+    tecfsdisk.h \
+    disknode.h
 
 FORMS += \
         widget.ui

@@ -1,0 +1,8 @@
+<?xml version ="1.0" encoding="utf-8" ?>
+<root>
+ <DiscoA>
+  <IP>192.168.5.2</IP>
+  <Numerodepuerto>5501</Numerodepuerto>
+  <Path>/home/rachel10/XML/DiskA</Path>
+ </DiscoA>
+</root>

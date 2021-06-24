@@ -1,0 +1,8 @@
+<?xml version ="1.0" encoding="utf-8" ?>
+<root>
+ <DiscoD>
+  <IP>192.168.5.7</IP>
+  <Numerodepuerto>2703</Numerodepuerto>
+  <Path>/home/rachel10/XML/DiskD</Path>
+ </DiscoD>
+</root>

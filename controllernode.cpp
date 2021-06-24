@@ -1,3 +1,4 @@
+#include "disknode.h"
 #include "controllernode.h"
 #include "filesmanagement.h"
 
@@ -519,7 +520,14 @@ string ControllerNode::DecodeMsg(string msg){
 }
 ControllerNode::ControllerNode()
 {
-    IndexBooks("./Archivos/");
+    //IndexBooks("./Archivos/");
+    DiskNode node;
+    node.crearDisk();
+    int tamb= node.get_tamanoBloque();
+    int tamd= node.get_tamanoDisk();
+    cout << "Cantidad de bloques :  " << tamd <<endl;
+    cout << "Cantidad de archivos por bloque:  " << tamb <<endl;
+
 }
 
 
