@@ -4,7 +4,24 @@
 
 #ifndef MS2_MSERVER_H
 #define MS2_MSERVER_H
+#include "widget.h"
+#include <QApplication>
+#include "iostream"
+#include "controllernode.h"
 
+#include <iomanip>
+
+#include <sstream>
+#include <bits/stdc++.h>
+#define MAX_TREE_HT 256
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+#include <iostream>
+#include <vector>
+#include <dirent.h>
+
+#include <bitset>
 
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -70,6 +87,8 @@ private:
      * @brief clientes Array con cada cliente contactado
      */
     vector<int> clientes;
+
+    static string DecodeMsg(string msg);
 };
 
 

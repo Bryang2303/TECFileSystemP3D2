@@ -10,6 +10,29 @@
 #include <unistd.h>
 #include <QObject>
 #include <arpa/inet.h>
+#include <iomanip>
+
+#include <sstream>
+#include <bits/stdc++.h>
+#define MAX_TREE_HT 256
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+#include <iostream>
+#include <vector>
+#include <dirent.h>
+
+#include <bitset>
+
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netdb.h>
+#include <string.h>
+#include <string>
+#include <iostream>
+#include <pthread.h>
+#include <vector>
+#include <unistd.h>
 
 using namespace std;
 /**
@@ -45,12 +68,16 @@ private:
      * @return
      */
     static void * controlador(void *obj);
+
+    static string DecodeMsg2(string msg);
 signals:
     /**
      * @brief NewMensaje Creacion de un mensaje nuevo mensaje
      * @param msn El contenido del mensaje
      */
     void NewMensaje(QString msn);
+
+
 };
 
 #endif // SOCKETCLIENTE_H
