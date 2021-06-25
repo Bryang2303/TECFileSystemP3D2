@@ -3,6 +3,6 @@
  <DiscoA>
   <IP>192.168.5.2</IP>
   <Numerodepuerto>5501</Numerodepuerto>
-  <Path>/home/rachel10/XML/DiskA</Path>
+  <Path>./DiskA/</Path>
  </DiscoA>
 </root>

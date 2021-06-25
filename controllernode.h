@@ -89,6 +89,9 @@ private:
     vector<int> clientes;
 
     static string DecodeMsg(string msg);
+
+    //static string Search(string Book);
+
 };
 
 

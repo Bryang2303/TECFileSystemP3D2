@@ -3,6 +3,6 @@
  <DiscoB>
   <IP>192.168.5.6</IP>
   <Numerodepuerto>2707</Numerodepuerto>
-  <Path>/home/rachel10/XML/DiskB</Path>
+  <Path>./DiskB/</Path>
  </DiscoB>
 </root>

@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDial>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -26,7 +27,6 @@ QT_BEGIN_NAMESPACE
 class Ui_Widget
 {
 public:
-    QPlainTextEdit *plainTextEdit;
     QOpenGLWidget *openGLWidget;
     QLineEdit *lineEdit;
     QPushButton *pushButton;
@@ -36,8 +36,16 @@ public:
     QLineEdit *lineEdit_2;
     QPushButton *pushButton_2;
     QPlainTextEdit *plainTextEdit_2;
-    QPlainTextEdit *plainTextEdit_3;
     QLabel *label_3;
+    QLineEdit *lineEdit_3;
+    QLineEdit *lineEdit_4;
+    QLineEdit *lineEdit_5;
+    QLineEdit *lineEdit_6;
+    QLabel *label_4;
+    QLabel *label_5;
+    QLabel *label_6;
+    QLabel *label_7;
+    QDial *dial;
 
     void setupUi(QWidget *Widget)
     {
@@ -105,9 +113,6 @@ public:
         palette.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush6);
         palette.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
         Widget->setPalette(palette);
-        plainTextEdit = new QPlainTextEdit(Widget);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(20, 370, 441, 61));
         openGLWidget = new QOpenGLWidget(Widget);
         openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
         openGLWidget->setGeometry(QRect(10, 40, 461, 141));
@@ -208,7 +213,7 @@ public:
         label->setFont(font1);
         openGLWidget_2 = new QOpenGLWidget(Widget);
         openGLWidget_2->setObjectName(QStringLiteral("openGLWidget_2"));
-        openGLWidget_2->setGeometry(QRect(10, 190, 461, 171));
+        openGLWidget_2->setGeometry(QRect(10, 190, 461, 241));
         label_2 = new QLabel(Widget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(20, 200, 161, 41));
@@ -286,9 +291,6 @@ public:
         plainTextEdit_2 = new QPlainTextEdit(Widget);
         plainTextEdit_2->setObjectName(QStringLiteral("plainTextEdit_2"));
         plainTextEdit_2->setGeometry(QRect(20, 120, 441, 51));
-        plainTextEdit_3 = new QPlainTextEdit(Widget);
-        plainTextEdit_3->setObjectName(QStringLiteral("plainTextEdit_3"));
-        plainTextEdit_3->setGeometry(QRect(20, 270, 441, 81));
         label_3 = new QLabel(Widget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(140, 0, 241, 51));
@@ -312,6 +314,110 @@ public:
         font2.setBold(true);
         font2.setWeight(75);
         label_3->setFont(font2);
+        lineEdit_3 = new QLineEdit(Widget);
+        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        lineEdit_3->setGeometry(QRect(20, 290, 141, 31));
+        lineEdit_4 = new QLineEdit(Widget);
+        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        lineEdit_4->setGeometry(QRect(170, 290, 141, 31));
+        lineEdit_5 = new QLineEdit(Widget);
+        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
+        lineEdit_5->setGeometry(QRect(320, 290, 141, 31));
+        lineEdit_6 = new QLineEdit(Widget);
+        lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
+        lineEdit_6->setGeometry(QRect(140, 350, 191, 31));
+        label_4 = new QLabel(Widget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(30, 270, 131, 21));
+        QPalette palette6;
+        palette6.setBrush(QPalette::Active, QPalette::WindowText, brush1);
+        palette6.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette6.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette6.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+        palette6.setBrush(QPalette::Inactive, QPalette::WindowText, brush1);
+        palette6.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette6.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette6.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+        palette6.setBrush(QPalette::Disabled, QPalette::WindowText, brush14);
+        palette6.setBrush(QPalette::Disabled, QPalette::Text, brush14);
+        palette6.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette6.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+        label_4->setPalette(palette6);
+        QFont font3;
+        font3.setFamily(QStringLiteral("Uroob"));
+        font3.setPointSize(17);
+        font3.setBold(true);
+        font3.setWeight(75);
+        label_4->setFont(font3);
+        label_5 = new QLabel(Widget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(180, 270, 131, 21));
+        QPalette palette7;
+        palette7.setBrush(QPalette::Active, QPalette::WindowText, brush1);
+        palette7.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette7.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette7.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::WindowText, brush1);
+        palette7.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette7.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+        palette7.setBrush(QPalette::Disabled, QPalette::WindowText, brush14);
+        palette7.setBrush(QPalette::Disabled, QPalette::Text, brush14);
+        palette7.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette7.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+        label_5->setPalette(palette7);
+        label_5->setFont(font3);
+        label_6 = new QLabel(Widget);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(330, 270, 131, 21));
+        QPalette palette8;
+        palette8.setBrush(QPalette::Active, QPalette::WindowText, brush1);
+        palette8.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette8.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette8.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+        palette8.setBrush(QPalette::Inactive, QPalette::WindowText, brush1);
+        palette8.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette8.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette8.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+        palette8.setBrush(QPalette::Disabled, QPalette::WindowText, brush14);
+        palette8.setBrush(QPalette::Disabled, QPalette::Text, brush14);
+        palette8.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette8.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+        label_6->setPalette(palette8);
+        label_6->setFont(font3);
+        label_7 = new QLabel(Widget);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(210, 320, 151, 41));
+        QPalette palette9;
+        palette9.setBrush(QPalette::Active, QPalette::WindowText, brush1);
+        palette9.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette9.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette9.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+        palette9.setBrush(QPalette::Inactive, QPalette::WindowText, brush1);
+        palette9.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette9.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette9.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+        palette9.setBrush(QPalette::Disabled, QPalette::WindowText, brush14);
+        palette9.setBrush(QPalette::Disabled, QPalette::Text, brush14);
+        palette9.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette9.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+        label_7->setPalette(palette9);
+        QFont font4;
+        font4.setFamily(QStringLiteral("Uroob"));
+        font4.setPointSize(20);
+        font4.setBold(true);
+        font4.setWeight(75);
+        label_7->setFont(font4);
+        dial = new QDial(Widget);
+        dial->setObjectName(QStringLiteral("dial"));
+        dial->setGeometry(QRect(90, 340, 41, 51));
+        QPalette palette10;
+        QBrush brush16(QColor(58, 111, 76, 255));
+        brush16.setStyle(Qt::SolidPattern);
+        palette10.setBrush(QPalette::Active, QPalette::Button, brush16);
+        palette10.setBrush(QPalette::Inactive, QPalette::Button, brush16);
+        palette10.setBrush(QPalette::Disabled, QPalette::Button, brush16);
+        dial->setPalette(palette10);
 
         retranslateUi(Widget);
 
@@ -326,6 +432,10 @@ public:
         label_2->setText(QApplication::translate("Widget", "CeSEARCH", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("Widget", "Search", Q_NULLPTR));
         label_3->setText(QApplication::translate("Widget", "TEC File System", Q_NULLPTR));
+        label_4->setText(QApplication::translate("Widget", "PART 1", Q_NULLPTR));
+        label_5->setText(QApplication::translate("Widget", "PART 2", Q_NULLPTR));
+        label_6->setText(QApplication::translate("Widget", "PART 3", Q_NULLPTR));
+        label_7->setText(QApplication::translate("Widget", "BOOK", Q_NULLPTR));
     } // retranslateUi
 
 };

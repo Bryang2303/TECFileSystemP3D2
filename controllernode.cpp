@@ -77,7 +77,7 @@ string GenerateParityInfo(string data){
 
 void escribir(string path);
 void ReadAndDivide(string path, string fileName);
-void agregar();
+void agregar2();
 void write(string newPath, string fileName, string textPart,int partNum,int nDisk);
 
 
@@ -104,10 +104,11 @@ int IndexBooks(string path) {
         return EXIT_FAILURE;
     }
 
-    for (auto file : files) {
+    for (string file : files) {
         cout << file << endl;
         ReadAndDivide(path,file);
     }
+
 
 
     //return EXIT_SUCCESS;
@@ -256,6 +257,20 @@ void escribir(string fileName){
 
     archivo.close();
 }
+void escribir2(string fileName,string msg){
+
+    ofstream archivo;
+
+    archivo.open(fileName+".text",ios::out);// Abre archivo
+
+    if (archivo.fail()){
+        cout << "Error al intentar abrir el archivo" << endl;
+        exit(1);
+    }
+    archivo << msg;
+
+    archivo.close();
+}
 void ReadAndDivide(string path, string fileName){
     ifstream archivo;
     string texto;
@@ -365,7 +380,7 @@ void ReadAndDivide(string path, string fileName){
     archivo.close();
 
 }
-void agregar(){
+void agregar2(){
     ofstream archivo;
 
     archivo.open("Archivos/p1.text",ios::app);
@@ -518,9 +533,12 @@ string ControllerNode::DecodeMsg(string msg){
     return decodedString;
 //
 }
+vector<int> clientes2;
+
 ControllerNode::ControllerNode()
 {
-    //IndexBooks("./Archivos/");
+    //IndexBooks("Archivos/");////////////////////////////////////////////////////////////////////////////////////////
+    //Search("A");
     DiskNode node;
     node.crearDisk();
     int tamb= node.get_tamanoBloque();
@@ -538,7 +556,7 @@ bool ControllerNode::crear_Socket()
         return false;
     info.sin_family = AF_INET;
     info.sin_addr.s_addr = INADDR_ANY;
-    info.sin_port = htons(4050);
+    info.sin_port = htons(8080);
     memset(&info.sin_zero,0,sizeof(info.sin_zero));
     return true;
 }
@@ -573,11 +591,68 @@ void ControllerNode::run()
             pthread_t hilo;
             pthread_create(&hilo,0,ControllerNode::controladorCliente,(void *)&data);
             pthread_detach(hilo);
+            clientes2[0]==clientes[0];
         }
     }
     close(descriptor);
 }
 
+
+string Search(string Book){
+    string Found;
+
+    for (int nD = 1;nD<5;nD++){
+        cout << "num disco " << nD << endl;
+        for (int nB = 2;nB<6;nB++){
+            cout << "num Bloque " << nB << endl;
+            ifstream archivo;
+            string texto;
+            string Book2;
+            for (int nF = 0;nF<2;nF++) {
+
+                for (int nP = 1;nP<4;nP++) {
+                    archivo.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nP)+"_Metadata.text",ios::in);
+                    if (!archivo.fail()){
+                        //cout << "PASO 2" << endl;
+                        ifstream archivo2;
+                        string texto2;
+
+                        archivo2.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nP)+".text",ios::in);
+                        getline(archivo2,texto2);
+
+                        for (int nC = 0;nC<texto2.length();nC++){
+                            Found+=texto2[nC];
+                        }
+                        break;
+                    }
+                }
+                //archivo.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nF)+"_Metadata.text",ios::in);
+
+            }
+            /*
+            for (int nF = 1;nF<4;nF++){
+                //cout << "numero" << endl;
+                cout <<
+                archivo.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nF)+"_Metadata.text",ios::in);
+                if (!archivo.fail()){
+                    //cout << "PASO 2" << endl;
+                    ifstream archivo2;
+                    string texto2;
+
+                    archivo.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nF)+".text",ios::in);
+                    getline(archivo2,texto2);
+
+                    for (int nC = 0;nC<texto2.length();nC++){
+                        Found+=texto2[nC];
+                    }
+                }
+            }*/
+
+
+        }
+    }
+    cout << "EL COMPILADO ES " << Found << endl;
+}
 
 
 void * ControllerNode::controladorCliente(void *obj)
@@ -585,6 +660,7 @@ void * ControllerNode::controladorCliente(void *obj)
     dataSocket *data = (dataSocket*)obj;
     while (true) {
         string mensaje;
+        //cout << mensaje << endl;
         while (1) {
             char buffer[100] = {0};
             int bytes = recv(data->descriptor,buffer,100,0);
@@ -595,11 +671,29 @@ void * ControllerNode::controladorCliente(void *obj)
         if (mensaje!=""){
             string msgDecoded = DecodeMsg(mensaje);
             cout << msgDecoded << endl;
+            if (msgDecoded[msgDecoded.length()-2]=='/'){
+                cout << "CeRobot Action" << endl;
+            } else {
+                //string msgDecoded2;
+                cout << "CeSearch Action" << endl;
+                //string msn;
+                /*
+                for (int g = 0;g<msgDecoded.length();g++){
+                    if (msgDecoded[g] != 's'){
+                        msn+=msgDecoded[g];
+                    } else {
 
-            if (msgDecoded[msgDecoded.length()-2] == '/'){
-                FilesManagement *fm;
-                IndexBooks(msgDecoded);
+                        msn = Search(msn);
+                        send(clientes2[0],msn.c_str(),strlen(msn.c_str()),0);
+                        break;
+                    }
+                }*/
+
             }
+            //for (int y = 0;y<msgDecoded.length();y++){
+              //  cout << "Msg p" << y << " " << msgDecoded[y] << endl;
+            //}
+
         }
         //cout << mensaje << endl;
 

@@ -36,15 +36,19 @@ void * serverRun(void *)
 
 int main(int argc, char *argv[])
 {
-    int mode = 1;
+    int mode = 2;
     if (mode==2){
+
+
+
+        /*
         FilesManagement *fss;
         fss->escribir("A");
         fss->escribir("B");
         fss->escribir("C");
         fss->escribir("D");
 
-        string path = "./Archivos/";
+        string path = "Archivos/";
         DIR *dir; struct dirent *diread;
         vector<char *> files;
 
@@ -62,6 +66,7 @@ int main(int argc, char *argv[])
             cout << file << endl;
             //ReadAndDivide(path,file);
         }
+        */
         //fss->IndexBooks("Archivos/");
 
 

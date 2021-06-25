@@ -24,7 +24,8 @@ public:
      * @brief sendMensaje Permite el envio de un mensaje especifico, al servidor
      */
     void sendMensaje();
-
+    void sendMensaje2();
+    //static void ShowData(string m1,string m2, string m3, string m);
 
 private slots:
     /**
@@ -33,6 +34,10 @@ private slots:
      */
     void printMensaje(QString msn);
     void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_dial_sliderPressed();
 
 private:
     Ui::Widget *ui;

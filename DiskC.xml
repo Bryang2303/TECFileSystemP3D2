@@ -3,6 +3,6 @@
  <DiscoC>
   <IP>192.168.5.4</IP>
   <Numerodepuerto>1102</Numerodepuerto>
-  <Path>/home/rachel10/XML/DiskC</Path>
+  <Path>./DiskC/</Path>
  </DiscoC>
 </root>
