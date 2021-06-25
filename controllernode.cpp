@@ -556,7 +556,7 @@ bool ControllerNode::crear_Socket()
         return false;
     info.sin_family = AF_INET;
     info.sin_addr.s_addr = INADDR_ANY;
-    info.sin_port = htons(8080);
+    info.sin_port = htons(8000);
     memset(&info.sin_zero,0,sizeof(info.sin_zero));
     return true;
 }

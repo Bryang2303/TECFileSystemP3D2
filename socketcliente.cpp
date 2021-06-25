@@ -17,8 +17,36 @@ string ParityXnor2(string p1, string p2, string p3){
             xnorF+="0";
         }
     }
-    cout << "Parity Xnor: " << xnorF << endl;
+    cout << "Parity XNOR: " << xnorF << endl;
     return xnorF;
+}
+
+string ParityXor(string p1, string p2, string p3){
+    string xnor;
+    string xnorF;
+    for (int i = 0;i<16;i++){
+        if (p1[i]==p2[i]){
+            xnor+="0";
+        } else {
+            xnor+="1";
+        }
+    }
+    for (int j = 0;j<16;j++){
+        if (xnor[j]==p3[j]){
+            xnorF+="0";
+        } else {
+            xnorF+="1";
+        }
+    }
+    cout << "Restored By XOR: " << xnorF << endl;
+    //string *parts3[3];
+    //string * test = new string[6];
+    //*parts3[0] = p1;
+    //*parts3[1] = p2;
+    //*parts3[2] = xnorF;
+    cout << " La suma " << p1+p2+xnorF << endl;
+    string final = p1+p2+xnorF;
+    return final;
 }
 
 void OddParityBit2(string bitChain){
@@ -471,6 +499,127 @@ string Search2(string Book){
     cout << "EL COMPILADO ES " << Found << endl;
     return Found;
 }
+QStringList parts;
+string Restore(string Book){
+    string Found;
+    string Fp1;
+    string Fp2;
+    string Fp3;
+    string Fpp;
+    for (int nD = 1;nD<5;nD++){
+        //cout << "num disco " << nD << endl;
+        for (int nB = 2;nB<6;nB++){
+            //cout << "num Bloque " << nB << endl;
+            ifstream archivo;
+            ifstream archivo3;
+            string texto;
+            string Book2;
+            for (int nF = 0;nF<2;nF++) {
+
+                for (int nP = 1;nP<4;nP++) {
+                    archivo.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nP)+"_Metadata.text",ios::in);
+                    if (!archivo.fail()){
+                        //cout << "PASO 2" << endl;
+                        ifstream archivo2;
+                        string texto2;
+
+                        archivo2.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nP)+".text",ios::in);
+                        getline(archivo2,texto2);
+                        if (nP==1){
+                            for (int nC = 0;nC<texto2.length();nC++){
+                                Fp1+=texto2[nC];
+                            }
+                            cout << "Fp" << nP << Fp1 << endl;
+                            break;
+
+                        }
+                        if (nP==2){
+                            for (int nC = 0;nC<texto2.length();nC++){
+                                Fp2+=texto2[nC];
+                            }
+                            cout << "Fp" << nP << Fp2 << endl;
+                            break;
+                        }
+                        if (nP==3){
+                            for (int nC = 0;nC<texto2.length();nC++){
+                                Fp3+=texto2[nC];
+                            }
+                            cout << "Fp" << nP << Fp3 << endl;
+                            break;
+                        }
+                    }
+                }
+                archivo3.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+"p_Metadata.text",ios::in);
+                if (!archivo3.fail()){
+                    //cout << "PASO 2" << endl;
+                    ifstream archivo4;
+                    string texto4;
+
+                    archivo4.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+"p_.text",ios::in);
+                    getline(archivo4,texto4);
+
+                    for (int nC = 0;nC<texto4.length();nC++){
+                        Fpp+=texto4[nC];
+                    }
+                    cout << "Fpp" << Fpp << endl;
+                    break;
+                }
+                //archivo.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nF)+"_Metadata.text",ios::in);
+
+            }
+
+        }
+    }
+    //cout << Fp1 << " " << Fp2 << " " << Fp3 << " " << Fpp << endl;
+    for (int nD = 1;nD<5;nD++){
+        //cout << "num disco " << nD << endl;
+        for (int nB = 2;nB<6;nB++){
+            //cout << "num Bloque " << nB << endl;
+            ifstream archivo;
+            ifstream archivo3;
+            string texto;
+            string Book2;
+            for (int nF = 0;nF<2;nF++) {
+
+                for (int nP = 1;nP<4;nP++) {
+                    archivo.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+"p_Metadata.text",ios::in);
+                    if (!archivo.fail()){
+                        //cout << "PASO 2" << endl;
+                        ifstream archivo2;
+                        string texto2;
+
+                        archivo2.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+"p.text",ios::in);
+                        getline(archivo2,texto2);
+                        for (int nC = 0;nC<texto2.length();nC++){
+                            Fpp+=texto2[nC];
+                        }
+                        cout << "Fpp" << Fpp << endl;
+                        break;
+                    }
+                }
+
+                //archivo.open("DISK "+to_string(nD)+"/Block "+to_string(nB)+"/"+Book+to_string(nF)+"_Metadata.text",ios::in);
+            }
+
+        }
+    }
+    string bytes[4];
+    bytes[0]=Fp1;
+    bytes[1]=Fp2;
+    bytes[2]=Fp3;
+    bytes[3]=Fpp;
+    string parts2[3];
+    int cont = 0;
+    for (int v = 0;v<4;v++){
+        if (bytes[v]!=""){
+            parts2[cont]=bytes[v];
+            cont++;
+        }
+    }
+    cout << parts2[0] << " " << parts2[1] << " " << parts2[2] << " end" << endl;
+    return ParityXor(parts2[0], parts2[1], parts2[2]);
+    //return "1";
+}
 // A Huffman tree node
 struct MinHeapNode
 {
@@ -607,6 +756,7 @@ string SocketCliente::DecodeMsg2(string msg){
 
 SocketCliente::SocketCliente()
 {
+
 }
 
 bool SocketCliente::connectar()
@@ -616,7 +766,7 @@ bool SocketCliente::connectar()
         return false;
     info.sin_family = AF_INET;
     info.sin_addr.s_addr = inet_addr("127.0.0.1");
-    info.sin_port = ntohs(8080);
+    info.sin_port = ntohs(8000);
     memset(&info.sin_zero,0,sizeof(info.sin_zero));
 
     if((::connect(descriptor,(sockaddr*)&info,(socklen_t)sizeof(info))) < 0)
@@ -675,6 +825,65 @@ void SocketCliente::setMensaje(const char *msn)
 
     if (msnn[msnn.length()-1] == '/'){
         IndexBooks2(msn);
+    } else if (msnn[msnn.length()-1] == 'R') {
+        string msn2;
+        string msn3;
+        for (int g = 0;g<msnn.length();g++){
+            if (msn[g] != 's'){
+                msn2+=msn[g];
+            } else {
+
+                msn3 = Restore(msn2);
+                break;
+            }
+        }
+        cout << "EL msn " << msn3 << endl;
+        //cout << m2 << endl;
+
+        cout << "bytes enviados "<< send(descriptor,msn,strlen(msn),0) << endl;
+
+        string m1,m2,m3,temp;
+
+
+        for (int s = 0;s<48;s++){
+            if (s==15){
+                temp+=msn3[s];
+                m1+=temp;
+                temp="";
+            } else if (s==31){
+                temp+=msn3[s];
+                m2+=temp;
+                temp="";
+            } else if (s==47){
+                temp+=msn3[s];
+                m3+=temp;
+                temp="";
+            } else {
+                temp+=msn3[s];
+            }
+        }
+
+        string data = m1+m2+m3;
+        stringstream sstream(data);
+        string output;
+        while(sstream.good())
+        {
+            std::bitset<8> bits;
+            sstream >> bits;
+            char c = char(bits.to_ulong());
+            output += c;
+        }
+        cout << m1 << endl;
+        cout << m2 << endl;
+
+        cout << m3 << endl;
+        cout << output << endl;
+
+        escribir10(m1,m2,m3,output);
+        cout << "llega aqui2" << endl;
+
+
+
     } else {
         //Search2("A");
 

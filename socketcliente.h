@@ -16,6 +16,7 @@
 #include <bits/stdc++.h>
 #define MAX_TREE_HT 256
 #include <iostream>
+#include <QStringList>
 #include <fstream>
 #include <stdlib.h>
 #include <iostream>
