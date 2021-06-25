@@ -45,3 +45,9 @@ HEADERS += \
 FORMS += \
         widget.ui
 QMAKE_CXXFLAGS += -std=gnu++14
+
+GENERATE_QHP           = YES
+QCH_FILE               = <project>.qch
+QHP_NAMESPACE          = <namespace>
+QHP_VIRTUAL_FOLDER     = doc
+QHG_LOCATION           = qhelpgenerator

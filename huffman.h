@@ -17,27 +17,43 @@ class Huffman
 public:
     Huffman();
 
-    // utility function to print characters along with
-    // there huffman value
+    /**
+     * @brief printCodes Esta funcion se utiliza para imprimir los caracteresque se generan del Huffman
+     * @param root Es la raiz del arbol utilizado
+     * @param str Dato que se quiere obtener
+     */
     void printCodes(struct MinHeapNode* root, string str);
 
-    // utility function to store characters along with
-    // there huffman value in a hash table, here we
-    // have C++ STL map
+    /**
+     * @brief storeCodes funcion de utilidad para almacenar caracteres junto  ya que hay valor huffman en una tabla hash
+     * @param root Es la raiz del arbol utilizado
+     * @param str Dato que se quiere obtener
+     */
     void storeCodes(struct MinHeapNode* root, string str);
 
-    // function to build the Huffman tree and store it
-    // in minHeap
+    /**
+     * @brief HuffmanCodes Funcion para crear el arbol del algoritmo Huffman
+     * @param size Tamano del arbol
+     */
     void HuffmanCodes(int size);
 
-    // utility function to store map each character with its
-    // frequency in input string
+    /**
+     * @brief calcFreq Función de utilidad para almacenar el mapa de cada carácter con su frecuencia en la cadena de entrada
+     * @param str Cadena de entrada
+     * @param n contador
+     */
     void calcFreq(string str, int n);
 
-    // function iterates through the encoded string s
+
     // if s[i]=='1' then move to node->right
     // if s[i]=='0' then move to node->left
     // if leaf node append the node->data to our output string
+    /**
+     * @brief decode_file la función itera a través de la cadena codificada en el string s
+     * @param root Raiz del arbol
+     * @param s cadena codificada
+     * @return dato codificado
+     */
     string decode_file(struct MinHeapNode* root, string s);
 
 

@@ -1,9 +1,5 @@
-//
-// Created by bryang2303.
-//
-
-#ifndef MS2_MSERVER_H
-#define MS2_MSERVER_H
+#ifndef CONTROLLERNODE_H
+#define CONTROLLERNODE_H
 #include "widget.h"
 #include <QApplication>
 #include "iostream"
@@ -43,13 +39,13 @@ struct dataSocket{
     sockaddr_in info;
 };
 /**
- * @brief The mserver class La clase que permite la creacion del Servidor, asi como su conexion con el Cliente y todo el flujo de datos con este
+ * @brief The ControllerNode class La clase que permite la creacion del Servidor, asi como su conexion con el Cliente y todo el flujo de datos con este
  */
 class ControllerNode
 {
 public:
     /**
-     * @brief mserver El constructor de mserver
+     * @brief ControllerNode Es el constructor
      */
     ControllerNode();
     /**
@@ -90,7 +86,7 @@ private:
 
     static string DecodeMsg(string msg);
 
-    //static string Search(string Book);
+
 
 };
 

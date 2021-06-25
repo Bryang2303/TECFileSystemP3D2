@@ -33,9 +33,18 @@ private slots:
      * @param msn El mensaje que el CLiente recibe del Servidor
      */
     void printMensaje(QString msn);
+    /**
+     * @brief on_pushButton_clicked Se utiliza para llamare la funcion de sendMensaje
+     */
     void on_pushButton_clicked();
+    /**
+     * @brief on_pushButton_2_clicked Se utiliza para llamare la funcion de sendMensaje2
+     */
 
     void on_pushButton_2_clicked();
+    /**
+     * @brief on_dial_sliderPressed Se utiliza para obtener el texto de una linea de texto
+     */
 
     void on_dial_sliderPressed();
 
